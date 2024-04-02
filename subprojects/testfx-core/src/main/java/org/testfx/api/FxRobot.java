@@ -43,6 +43,7 @@ import javafx.scene.input.MouseButton;
 import javafx.stage.Window;
 
 import org.hamcrest.Matcher;
+import org.testfx.api.Iterface.*;
 import org.testfx.robot.Motion;
 import org.testfx.service.locator.PointLocator;
 import org.testfx.service.query.BoundsQuery;
@@ -56,7 +57,7 @@ import static org.testfx.util.WaitForAsyncUtils.asyncFx;
 import static org.testfx.util.WaitForAsyncUtils.waitFor;
 import static org.testfx.util.WaitForAsyncUtils.waitForFxEvents;
 
-public class FxRobot implements FxRobotInterface {
+public class FxRobot implements FxWindowInterface, FxNodeQueryInterface, FxBoundsInterface, FxPointQueryInterface, FxCaptureInterface, FxInteractionInterface, FxClickInterface, FxDragAndDropInterface, FxScrollInterface, FxWriteInterface {
 
     private final FxRobotContext context;
 

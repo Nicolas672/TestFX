@@ -60,12 +60,14 @@ import static org.testfx.util.WaitForAsyncUtils.waitForFxEvents;
 public class FxRobot implements FxWindowInterface, FxNodeQueryInterface, FxBoundsInterface, FxPointQueryInterface, FxCaptureInterface, FxInteractionInterface, FxClickInterface, FxDragAndDropInterface, FxScrollInterface, FxWriteInterface {
 
     private final FxRobotContext context;
+    private final FxRobotAllInterface allInterface;
 
     /**
      * Constructs all robot-related implementations and sets {@link #targetPos(Pos)} to {@link Pos#CENTER}.
      */
     public FxRobot() {
         context = new FxRobotContext();
+        allInterface = new FxRobotAllInterface(this, context);
     }
 
     /**
@@ -75,407 +77,344 @@ public class FxRobot implements FxWindowInterface, FxNodeQueryInterface, FxBound
         return context;
     }
 
-    @Override
+
     public Window targetWindow() {
-        return context.getWindowFinder().targetWindow();
+        return allInterface.getWindow().targetWindow();
     }
 
-    @Override
+
     public FxRobot targetWindow(Window window) {
-        context.getWindowFinder().targetWindow(window);
-        return this;
+        return allInterface.getWindow().targetWindow(window);
     }
 
     @Override
     public FxRobot targetWindow(Predicate<Window> predicate) {
-        context.getWindowFinder().targetWindow(predicate);
-        return this;
+        return allInterface.getWindow().targetWindow(predicate);
     }
 
     @Override
     public FxRobot targetWindow(int windowNumber) {
-        context.getWindowFinder().targetWindow(windowNumber);
-        return this;
+        return allInterface.getWindow().targetWindow(windowNumber);
     }
 
     @Override
     public FxRobot targetWindow(String stageTitleRegex) {
-        context.getWindowFinder().targetWindow(stageTitleRegex);
-        return this;
+        return allInterface.getWindow().targetWindow(stageTitleRegex);
     }
 
     @Override
     public FxRobot targetWindow(Pattern stageTitlePattern) {
-        context.getWindowFinder().targetWindow(stageTitlePattern);
-        return this;
+        return allInterface.getWindow().targetWindow(stageTitlePattern);
     }
 
     @Override
     public FxRobot targetWindow(Scene scene) {
-        context.getWindowFinder().targetWindow(scene);
-        return this;
+        return allInterface.getWindow().targetWindow(scene);
     }
 
     @Override
     public FxRobot targetWindow(Node node) {
-        context.getWindowFinder().targetWindow(node);
-        return this;
+        return allInterface.getWindow().targetWindow(node);
     }
 
     @Override
     public List<Window> listWindows() {
-        return context.getWindowFinder().listWindows();
+        return allInterface.getWindow().listWindows();
     }
 
     @Override
     public List<Window> listTargetWindows() {
-        return context.getWindowFinder().listTargetWindows();
+        return allInterface.getWindow().listTargetWindows();
     }
 
     @Override
     public Window window(Predicate<Window> predicate) {
-        return context.getWindowFinder().window(predicate);
+        return allInterface.getWindow().window(predicate);
     }
 
     @Override
     public Window window(int windowIndex) {
-        return context.getWindowFinder().window(windowIndex);
+        return allInterface.getWindow().window(windowIndex);
     }
 
     @Override
     public Window window(String stageTitleRegex) {
-        return context.getWindowFinder().window(stageTitleRegex);
+        return allInterface.getWindow().window(stageTitleRegex);
     }
 
     @Override
     public Window window(Pattern stageTitlePattern) {
-        return context.getWindowFinder().window(stageTitlePattern);
+        return allInterface.getWindow().window(stageTitlePattern);
     }
 
     @Override
     public Window window(Scene scene) {
-        return context.getWindowFinder().window(scene);
+        return allInterface.getWindow().window(scene);
     }
 
     @Override
     public Window window(Node node) {
-        return context.getWindowFinder().window(node);
+        return allInterface.getWindow().window(node);
     }
 
     @Override
     public NodeQuery fromAll() {
-        return context.getNodeFinder().fromAll();
+        return allInterface.getNodeQuery().fromAll();
     }
 
     @Override
     public NodeQuery from(Node... parentNodes) {
-        return context.getNodeFinder().from(parentNodes);
+        return allInterface.getNodeQuery().from(parentNodes);
     }
 
     @Override
     public NodeQuery from(Collection<Node> parentNodes) {
-        return context.getNodeFinder().from(parentNodes);
+        return allInterface.getNodeQuery().from(parentNodes);
     }
 
     @Override
     public NodeQuery from(NodeQuery nodeQuery) {
-        return context.getNodeFinder().from(nodeQuery);
+        return allInterface.getNodeQuery().from(nodeQuery);
     }
 
     @Override
     public NodeQuery lookup(String query) {
-        return context.getNodeFinder().lookup(query);
+        return allInterface.getNodeQuery().lookup(query);
     }
 
     @Override
     public <T extends Node> NodeQuery lookup(Matcher<T> matcher) {
-        return context.getNodeFinder().lookup(matcher);
+        return allInterface.getNodeQuery().lookup(matcher);
     }
 
     @Override
     public <T extends Node> NodeQuery lookup(Predicate<T> predicate) {
-        return context.getNodeFinder().lookup(predicate);
+        return allInterface.getNodeQuery().lookup(predicate);
     }
 
     @Override
     public Node rootNode(Window window) {
-        return context.getNodeFinder().rootNode(window);
+        return allInterface.getNodeQuery().rootNode(window);
     }
 
     @Override
     public Node rootNode(Scene scene) {
-        return context.getNodeFinder().rootNode(scene);
+        return allInterface.getNodeQuery().rootNode(scene);
     }
 
     @Override
     public Node rootNode(Node node) {
-        return context.getNodeFinder().rootNode(node);
+        return allInterface.getNodeQuery().rootNode(node);
     }
 
-    @Override
+
     public BoundsQuery bounds(double minX, double minY, double width, double height) {
-        return () -> BoundsQueryUtils.bounds(minX, minY, width, height);
+        return allInterface.getBounds().bounds(minX, minY, width, height);
     }
 
-    @Override
     public BoundsQuery bounds(Point2D point) {
-        return () -> BoundsQueryUtils.bounds(point);
+        return allInterface.getBounds().bounds(point);
     }
 
-    @Override
+
     public BoundsQuery bounds(Bounds bounds) {
-        return () -> bounds;
+        return allInterface.getBounds().bounds(bounds);
     }
 
-    @Override
     public BoundsQuery bounds(Node node) {
-        return () -> BoundsQueryUtils.boundsOnScreen(node);
+        return allInterface.getBounds().bounds(node);
     }
 
-    @Override
     public BoundsQuery bounds(Scene scene) {
-        return () -> BoundsQueryUtils.boundsOnScreen(BoundsQueryUtils.bounds(scene), scene);
+        return allInterface.getBounds().bounds(scene);
     }
 
-    @Override
     public BoundsQuery bounds(Window window) {
-        return () -> BoundsQueryUtils.boundsOnScreen(BoundsQueryUtils.bounds(window), window);
+        return allInterface.getBounds().bounds(window);
     }
 
-    @Override
     public BoundsQuery bounds(String query) {
-        throw new UnsupportedOperationException();
+        return allInterface.getBounds().bounds(query);
     }
 
-    @Override
     public <T extends Node> BoundsQuery bounds(Matcher<T> matcher) {
-        throw new UnsupportedOperationException();
+        return allInterface.getBounds().bounds(matcher);
     }
 
-    @Override
     public <T extends Node> BoundsQuery bounds(Predicate<T> predicate) {
-        throw new UnsupportedOperationException();
+        return allInterface.getBounds().bounds(predicate);
     }
 
     @Override
     public FxRobot targetPos(Pos pointPosition) {
-        context.setPointPosition(pointPosition);
-        return this;
+        return allInterface.getPointQuery().targetPos(pointPosition);
     }
 
     @Override
     public PointQuery point(double x, double y) {
-        PointLocator pointLocator = context.getPointLocator();
-        Pos pointPosition = context.getPointPosition();
-        return pointLocator.point(new Point2D(x, y)).atPosition(pointPosition);
+        return allInterface.getPointQuery().point(x, y);
     }
 
     @Override
     public PointQuery point(Point2D point) {
-        PointLocator pointLocator = context.getPointLocator();
-        Pos pointPosition = context.getPointPosition();
-        return pointLocator.point(point).atPosition(pointPosition);
+        return allInterface.getPointQuery().point(point);
     }
 
     @Override
     public PointQuery point(Bounds bounds) {
-        PointLocator pointLocator = context.getPointLocator();
-        Pos pointPosition = context.getPointPosition();
-        return pointLocator.point(bounds).atPosition(pointPosition);
+        return allInterface.getPointQuery().point(bounds);
     }
 
     @Override
     public PointQuery point(Node node) {
-        PointLocator pointLocator = context.getPointLocator();
-        Pos pointPosition = context.getPointPosition();
-        targetWindow(node.getScene().getWindow());
-        return pointLocator.point(node).onNode(node).atPosition(pointPosition);
+        return allInterface.getPointQuery().point(node);
     }
 
     @Override
     public PointQuery point(Scene scene) {
-        PointLocator pointLocator = context.getPointLocator();
-        Pos pointPosition = context.getPointPosition();
-        targetWindow(scene.getWindow());
-        return pointLocator.point(scene).atPosition(pointPosition);
+        return allInterface.getPointQuery().point(scene);
     }
 
     @Override
     public PointQuery point(Window window) {
-        PointLocator pointLocator = context.getPointLocator();
-        Pos pointPosition = context.getPointPosition();
-        targetWindow(window);
-        return pointLocator.point(window).atPosition(pointPosition);
+        return allInterface.getPointQuery().point(window);
     }
 
     @Override
     public PointQuery point(String query) {
-        NodeQuery nodeQuery = lookup(query);
-        Node node = queryNode(nodeQuery, "the query \"" + query + "\"");
-        return point(node).atPosition(context.getPointPosition());
+        return allInterface.getPointQuery().point(query);
     }
 
     @Override
     public <T extends Node> PointQuery point(Matcher<T> matcher) {
-        NodeQuery nodeQuery = lookup(matcher);
-        Node node = queryNode(nodeQuery, "the matcher \"" + matcher.toString() + "\"");
-        return point(node).atPosition(context.getPointPosition());
+        return allInterface.getPointQuery().point(matcher);
     }
 
     @Override
     public <T extends Node> PointQuery point(Predicate<T> predicate) {
-        NodeQuery nodeQuery = lookup(predicate);
-        Node node = queryNode(nodeQuery, "the predicate");
-        return point(node).atPosition(context.getPointPosition());
+        return allInterface.getPointQuery().point(predicate);
     }
 
     @Override
     public PointQuery offset(Point2D point, double offsetX, double offsetY) {
-        return point(point).atOffset(offsetX, offsetY);
+        return allInterface.getPointQuery().offset(point, offsetX, offsetY);
     }
 
     @Override
     public PointQuery offset(Bounds bounds, double offsetX, double offsetY) {
-        return point(bounds).atOffset(offsetX, offsetY);
+        return allInterface.getPointQuery().offset(bounds, offsetX, offsetY);
     }
 
     @Override
     public PointQuery offset(Node node, double offsetX, double offsetY) {
-        return point(node).atOffset(offsetX, offsetY);
+        return allInterface.getPointQuery().offset(node, offsetX, offsetY);
     }
 
     @Override
     public PointQuery offset(Node node, Pos offsetReferencePos, double offsetX, double offsetY) {
-        return point(node).atPosition(offsetReferencePos).atOffset(offsetX, offsetY);
+        return allInterface.getPointQuery().offset(node, offsetReferencePos, offsetX, offsetY);
     }
 
     @Override
     public PointQuery offset(Scene scene, double offsetX, double offsetY) {
-        return point(scene).atOffset(offsetX, offsetY);
+        return allInterface.getPointQuery().offset(scene, offsetX, offsetY);
     }
 
     @Override
     public PointQuery offset(Window window, double offsetX, double offsetY) {
-        return point(window).atOffset(offsetX, offsetY);
+        return allInterface.getPointQuery().offset(window, offsetX, offsetY);
     }
 
     @Override
     public PointQuery offset(String query, double offsetX, double offsetY) {
-        return point(query).atOffset(offsetX, offsetY);
+        return allInterface.getPointQuery().offset(query, offsetX, offsetY);
     }
 
     @Override
     public <T extends Node> PointQuery offset(Matcher<T> matcher, double offsetX, double offsetY) {
-        return point(matcher).atOffset(offsetX, offsetY);
+        return allInterface.getPointQuery().offset(matcher, offsetX, offsetY);
     }
 
     @Override
     public <T extends Node> PointQuery offset(Predicate<T> predicate, double offsetX, double offsetY) {
-        return point(predicate).atOffset(offsetX, offsetY);
+        return allInterface.getPointQuery().offset(predicate, offsetX, offsetY);
     }
 
-    @Override
     public Capture capture(Rectangle2D screenRegion) {
-        return () -> context.getCaptureSupport().captureRegion(screenRegion);
+        return allInterface.getCapture().capture(screenRegion);
     }
 
-    @Override
     public Capture capture(Bounds bounds) {
-        Rectangle2D region = new Rectangle2D(bounds.getMinX(), bounds.getMinY(),
-                                             bounds.getWidth(), bounds.getHeight());
-        return () -> context.getCaptureSupport().captureRegion(region);
+        return allInterface.getCapture().capture(bounds);
     }
 
-    @Override
     public Capture capture(Node node) {
-        return () -> context.getCaptureSupport().captureNode(node);
+        return allInterface.getCapture().capture(node);
     }
 
-    @Override
     public Capture capture(Image image) {
-        return () -> image;
+        return allInterface.getCapture().capture(image);
     }
 
-    @Override
     public Capture capture(Path path) {
-        return () -> context.getCaptureSupport().loadImage(path);
+        return allInterface.getCapture().capture(path);
     }
 
-    @Override
     public Capture capture(URL url) {
-        try {
-            Path path = Paths.get(url.toURI());
-            return () -> context.getCaptureSupport().loadImage(path);
-        }
-        catch (URISyntaxException exception) {
-            throw new RuntimeException(exception);
-        }
+        return allInterface.getCapture().capture(url);
     }
 
-    @Override
     public FxRobot interact(Runnable runnable) {
-        waitFor(asyncFx(runnable));
-        waitForFxEvents();
-        return this;
+        return allInterface.getInteraction().interact(runnable);
     }
 
     @Override
     public <T> FxRobot interact(Callable<T> callable) {
-        waitFor(asyncFx(callable));
-        waitForFxEvents();
-        return this;
+        return allInterface.getInteraction().interact(callable);
     }
 
     @Override
     public FxRobot interactNoWait(Runnable runnable) {
-        waitFor(asyncFx(runnable));
-        return this;
+        return allInterface.getInteraction().interactNoWait(runnable);
     }
     @Override
     public <T> FxRobot interactNoWait(Callable<T> callable) {
-        waitFor(asyncFx(callable));
-        return this;
+        return allInterface.getInteraction().interactNoWait(callable);
     }
 
     @Override
     public FxRobot interrupt() {
-        waitForFxEvents();
-        return this;
+        return allInterface.getInteraction().interrupt();
     }
 
     @Override
     public FxRobot interrupt(int attemptsCount) {
-        waitForFxEvents(attemptsCount);
-        return this;
+        return allInterface.getInteraction().interrupt(attemptsCount);
     }
 
     @Override
     public FxRobot push(KeyCode... combination) {
-        context.getTypeRobot().push(combination);
-        return this;
+        return allInterface.getWrite().push(combination);
     }
 
     @Override
     public FxRobot push(KeyCodeCombination combination) {
-        context.getTypeRobot().push(combination);
-        return this;
+        return allInterface.getWrite().push(combination);
     }
 
     @Override
     public FxRobot type(KeyCode... keyCodes) {
-        context.getTypeRobot().type(keyCodes);
-        return this;
+        return allInterface.getWrite().type(keyCodes);
     }
 
     @Override
     public FxRobot type(KeyCode keyCode, int times) {
-        context.getTypeRobot().type(keyCode, times);
-        return this;
+        return allInterface.getWrite().type(keyCode, times);
     }
 
     @Override
     public FxRobot eraseText(int amount) {
-        return type(KeyCode.BACK_SPACE, amount);
+        return allInterface.getWrite().eraseText(amount);
     }
 
     /**
@@ -489,472 +428,407 @@ public class FxRobot implements FxWindowInterface, FxNodeQueryInterface, FxBound
 
     @Override
     public FxRobot write(char character) {
-        context.getWriteRobot().write(character);
-        return this;
+        return allInterface.getWrite().write(character);
     }
 
     @Override
     public FxRobot write(String text) {
-        context.getWriteRobot().write(text);
-        return this;
+        return allInterface.getWrite().write(text);
     }
 
     @Override
     public FxRobot write(String text, int sleepMillis) {
-        context.getWriteRobot().write(text, sleepMillis);
-        return this;
+        return allInterface.getWrite().write(text, sleepMillis);
     }
 
     @Override
     public FxRobot sleep(long milliseconds) {
-        context.getSleepRobot().sleep(milliseconds);
-        return this;
+        return allInterface.getInteraction().sleep(milliseconds);
     }
 
     @Override
     public FxRobot sleep(long duration, TimeUnit timeUnit) {
-        context.getSleepRobot().sleep(duration, timeUnit);
-        return this;
+        return allInterface.getInteraction().sleep(duration, timeUnit);
     }
 
     @Override
     @Deprecated
     public FxRobot scroll(int amount) {
-        context.getScrollRobot().scroll(amount);
-        return this;
+        return allInterface.getScroll().scroll(amount);
     }
 
     @Override
     public FxRobot scroll(int amount, VerticalDirection direction) {
-        context.getScrollRobot().scroll(amount, direction);
-        return this;
+        return allInterface.getScroll().scroll(amount, direction);
     }
 
     @Override
     public FxRobot scroll(VerticalDirection direction) {
-        scroll(1, direction);
-        return this;
+        return allInterface.getScroll().scroll(direction);
     }
 
     @Override
     public FxRobot scroll(int amount, HorizontalDirection direction) {
-        context.getScrollRobot().scroll(amount, direction);
-        return this;
+        return allInterface.getScroll().scroll(amount, direction);
     }
 
     @Override
     public FxRobot scroll(HorizontalDirection direction) {
-        scroll(1, direction);
-        return this;
+        return allInterface.getScroll().scroll(direction);
     }
 
     @Override
     public FxRobot press(KeyCode... keys) {
-        context.getKeyboardRobot().press(keys);
-        return this;
+        return allInterface.getDragAndDrop().press(keys);
     }
 
     @Override
     public FxRobot release(KeyCode... keys) {
-        context.getKeyboardRobot().release(keys);
-        return this;
+        return allInterface.getDragAndDrop().release(keys);
     }
 
     @Override
     public FxRobot press(MouseButton... buttons) {
-        context.getMouseRobot().press(buttons);
-        return this;
+        return allInterface.getDragAndDrop().press(buttons);
     }
 
     @Override
     public FxRobot release(MouseButton... buttons) {
-        context.getMouseRobot().release(buttons);
-        return this;
+        return allInterface.getDragAndDrop().release(buttons);
     }
 
     @Override
     public FxRobot clickOn(MouseButton... buttons) {
-        context.getClickRobot().clickOn(buttons);
-        return this;
+        return allInterface.getClick().clickOn(buttons);
     }
 
     @Override
     public FxRobot clickOn(PointQuery pointQuery, Motion motion, MouseButton... buttons) {
-        context.getClickRobot().clickOn(pointQuery, motion, buttons);
-        return this;
+        return allInterface.getClick().clickOn(pointQuery, motion, buttons);
     }
 
     @Override
     public FxRobot doubleClickOn(MouseButton... buttons) {
-        context.getClickRobot().doubleClickOn(buttons);
-        return this;
+        return allInterface.getClick().doubleClickOn(buttons);
     }
 
     @Override
     public FxRobot doubleClickOn(PointQuery pointQuery, Motion motion, MouseButton... buttons) {
-        context.getClickRobot().doubleClickOn(pointQuery, motion, buttons);
-        return this;
+        return allInterface.getClick().doubleClickOn(pointQuery, motion, buttons);
     }
 
     @Override
     public FxRobot clickOn(double x, double y, Motion motion, MouseButton... buttons) {
-        return clickOn(point(x, y), motion, buttons);
+        return allInterface.getClick().clickOn(x, y, motion, buttons);
     }
 
     @Override
     public FxRobot clickOn(Point2D point, Motion motion, MouseButton... buttons) {
-        return clickOn(point(point), motion, buttons);
+        return allInterface.getClick().clickOn(point, motion, buttons);
     }
 
     @Override
     public FxRobot clickOn(Bounds bounds, Motion motion, MouseButton... buttons) {
-        return clickOn(point(bounds), motion, buttons);
+        return allInterface.getClick().clickOn(bounds, motion, buttons);
     }
 
     @Override
     public FxRobot clickOn(Node node, Motion motion, MouseButton... buttons) {
-        return clickOn(point(node), motion, buttons);
+        return allInterface.getClick().clickOn(node, motion, buttons);
     }
 
     @Override
     public FxRobot clickOn(Scene scene, Motion motion, MouseButton... buttons) {
-        return clickOn(point(scene), motion, buttons);
+        return allInterface.getClick().clickOn(scene, motion, buttons);
     }
 
     @Override
     public FxRobot clickOn(Window window, Motion motion, MouseButton... buttons) {
-        return clickOn(point(window), motion, buttons);
+        return allInterface.getClick().clickOn(window, motion, buttons);
     }
 
     @Override
     public FxRobot clickOn(String query, Motion motion, MouseButton... buttons) {
-        return clickOn(pointOfVisibleNode(query), motion, buttons);
+        return allInterface.getClick().clickOn(query, motion, buttons);
     }
 
     @Override
     public <T extends Node> FxRobot clickOn(Matcher<T> matcher, Motion motion, MouseButton... buttons) {
-        return clickOn(pointOfVisibleNode(matcher), motion, buttons);
+        return allInterface.getClick().clickOn(matcher, motion, buttons);
     }
 
     @Override
     public <T extends Node> FxRobot clickOn(Predicate<T> predicate, Motion motion, MouseButton... buttons) {
-        return clickOn(pointOfVisibleNode(predicate), motion, buttons);
+        return allInterface.getClick().clickOn(predicate, motion, buttons);
     }
 
     @Override
     public FxRobot rightClickOn() {
-        return clickOn(MouseButton.SECONDARY);
+        return allInterface.getClick().rightClickOn();
     }
 
     @Override
     public FxRobot rightClickOn(PointQuery pointQuery, Motion motion) {
-        return clickOn(pointQuery, motion, MouseButton.SECONDARY);
+        return allInterface.getClick().rightClickOn(pointQuery, motion);
     }
 
     @Override
     public FxRobot rightClickOn(double x, double y, Motion motion) {
-        return clickOn(x, y, motion, MouseButton.SECONDARY);
+        return allInterface.getClick().rightClickOn(x, y, motion);
     }
 
     @Override
     public FxRobot rightClickOn(Point2D point, Motion motion) {
-        return clickOn(point, motion, MouseButton.SECONDARY);
+        return allInterface.getClick().rightClickOn(point, motion);
     }
 
     @Override
     public FxRobot rightClickOn(Bounds bounds, Motion motion) {
-        return clickOn(bounds, motion, MouseButton.SECONDARY);
+        return allInterface.getClick().rightClickOn(bounds, motion);
     }
 
     @Override
     public FxRobot rightClickOn(Node node, Motion motion) {
-        return clickOn(node, motion, MouseButton.SECONDARY);
+        return allInterface.getClick().rightClickOn(node, motion);
     }
 
     @Override
     public FxRobot rightClickOn(Scene scene, Motion motion) {
-        return clickOn(scene, motion, MouseButton.SECONDARY);
+        return allInterface.getClick().rightClickOn(scene, motion);
     }
 
     @Override
     public FxRobot rightClickOn(Window window, Motion motion) {
-        return clickOn(window, motion, MouseButton.SECONDARY);
+        return allInterface.getClick().rightClickOn(window, motion);
     }
 
     @Override
     public FxRobot rightClickOn(String query, Motion motion) {
-        return clickOn(query, motion, MouseButton.SECONDARY);
+        return allInterface.getClick().rightClickOn(query, motion);
     }
 
     @Override
     public <T extends Node> FxRobot rightClickOn(Matcher<T> matcher, Motion motion) {
-        return clickOn(matcher, motion, MouseButton.SECONDARY);
+        return allInterface.getClick().rightClickOn(matcher, motion);
     }
 
     @Override
     public <T extends Node> FxRobot rightClickOn(Predicate<T> predicate, Motion motion) {
-        return clickOn(predicate, motion, MouseButton.SECONDARY);
+        return allInterface.getClick().rightClickOn(predicate, motion);
     }
 
     @Override
     public FxRobot doubleClickOn(double x, double y, Motion motion, MouseButton... buttons) {
-        return doubleClickOn(point(x, y), motion, buttons);
+        return allInterface.getClick().doubleClickOn(x, y, motion, buttons);
     }
 
     @Override
     public FxRobot doubleClickOn(Point2D point, Motion motion, MouseButton... buttons) {
-        return doubleClickOn(point(point), motion, buttons);
+        return allInterface.getClick().doubleClickOn(point, motion, buttons);
     }
 
     @Override
     public FxRobot doubleClickOn(Bounds bounds, Motion motion, MouseButton... buttons) {
-        return doubleClickOn(point(bounds), motion, buttons);
+        return allInterface.getClick().doubleClickOn(bounds, motion, buttons);
     }
 
     @Override
     public FxRobot doubleClickOn(Node node, Motion motion, MouseButton... buttons) {
-        return doubleClickOn(point(node), motion, buttons);
+        return allInterface.getClick().doubleClickOn(node, motion, buttons);
     }
 
     @Override
     public FxRobot doubleClickOn(Scene scene, Motion motion, MouseButton... buttons) {
-        return doubleClickOn(point(scene), motion, buttons);
+        return allInterface.getClick().doubleClickOn(scene, motion, buttons);
     }
 
     @Override
     public FxRobot doubleClickOn(Window window, Motion motion, MouseButton... buttons) {
-        return doubleClickOn(point(window), motion, buttons);
+        return allInterface.getClick().doubleClickOn(window, motion, buttons);
     }
 
     @Override
     public FxRobot doubleClickOn(String query, Motion motion, MouseButton... buttons) {
-        return doubleClickOn(pointOfVisibleNode(query), motion, buttons);
+        return allInterface.getClick().doubleClickOn(query, motion, buttons);
     }
 
     @Override
     public <T extends Node> FxRobot doubleClickOn(Matcher<T> matcher, Motion motion, MouseButton... buttons) {
-        return doubleClickOn(pointOfVisibleNode(matcher), motion, buttons);
+        return allInterface.getClick().doubleClickOn(matcher, motion, buttons);
     }
 
     @Override
     public <T extends Node> FxRobot doubleClickOn(Predicate<T> predicate, Motion motion, MouseButton... buttons) {
-        return doubleClickOn(pointOfVisibleNode(predicate), motion, buttons);
+        return allInterface.getClick().doubleClickOn(predicate, motion, buttons);
     }
 
     @Override
     public FxRobot drag(MouseButton... buttons) {
-        context.getDragRobot().drag(buttons);
-        return this;
+        return allInterface.getDragAndDrop().drag(buttons);
     }
 
     @Override
     public FxRobot drag(PointQuery pointQuery, MouseButton... buttons) {
-        context.getDragRobot().drag(pointQuery, buttons);
-        return this;
+        return allInterface.getDragAndDrop().drag(pointQuery, buttons);
     }
 
     @Override
     public FxRobot drop() {
-        context.getDragRobot().drop();
-        return this;
+        return allInterface.getDragAndDrop().drop();
     }
 
     @Override
     public FxRobot dropTo(PointQuery pointQuery) {
-        context.getDragRobot().dropTo(pointQuery);
-        return this;
+        return allInterface.getDragAndDrop().dropTo(pointQuery);
     }
 
     @Override
     public FxRobot dropBy(double x, double y) {
-        context.getDragRobot().dropBy(x, y);
-        return this;
+        return allInterface.getDragAndDrop().dropBy(x, y);
     }
 
     @Override
     public FxRobot drag(double x, double y, MouseButton... buttons) {
-        return drag(point(x, y), buttons);
+        return allInterface.getDragAndDrop().drag(x, y, buttons);
     }
 
     @Override
     public FxRobot drag(Point2D point, MouseButton... buttons) {
-        return drag(point(point), buttons);
+        return allInterface.getDragAndDrop().drag(point, buttons);
     }
 
     @Override
     public FxRobot drag(Bounds bounds, MouseButton... buttons) {
-        return drag(point(bounds), buttons);
+        return allInterface.getDragAndDrop().drag(bounds, buttons);
     }
 
     @Override
     public FxRobot drag(Node node, MouseButton... buttons) {
-        return drag(point(node), buttons);
+        return allInterface.getDragAndDrop().drag(node, buttons);
     }
 
     @Override
     public FxRobot drag(Scene scene, MouseButton... buttons) {
-        return drag(point(scene), buttons);
+        return allInterface.getDragAndDrop().drag(scene, buttons);
     }
 
     @Override
     public FxRobot drag(Window window, MouseButton... buttons) {
-        return drag(point(window), buttons);
+        return allInterface.getDragAndDrop().drag(window, buttons);
     }
 
     @Override
     public FxRobot drag(String query, MouseButton... buttons) {
-        return drag(pointOfVisibleNode(query), buttons);
+        return allInterface.getDragAndDrop().drag(query, buttons);
     }
 
     @Override
     public <T extends Node> FxRobot drag(Matcher<T> matcher, MouseButton... buttons) {
-        return drag(pointOfVisibleNode(matcher), buttons);
+        return allInterface.getDragAndDrop().drag(matcher, buttons);
     }
 
     @Override
     public <T extends Node> FxRobot drag(Predicate<T> predicate, MouseButton... buttons) {
-        return drag(pointOfVisibleNode(predicate), buttons);
+        return allInterface.getDragAndDrop().drag(predicate, buttons);
     }
 
     @Override
     public FxRobot dropTo(double x, double y) {
-        return dropTo(point(x, y));
+        return allInterface.getDragAndDrop().dropTo(x, y);
     }
 
     @Override
     public FxRobot dropTo(Point2D point) {
-        return dropTo(point(point));
+        return allInterface.getDragAndDrop().dropTo(point);
     }
 
     @Override
     public FxRobot dropTo(Bounds bounds) {
-        return dropTo(point(bounds));
+        return allInterface.getDragAndDrop().dropTo(bounds);
     }
 
     @Override
     public FxRobot dropTo(Node node) {
-        return dropTo(point(node));
+        return allInterface.getDragAndDrop().dropTo(node);
     }
 
     @Override
     public FxRobot dropTo(Scene scene) {
-        return dropTo(point(scene));
+        return allInterface.getDragAndDrop().dropTo(scene);
     }
 
     @Override
     public FxRobot dropTo(Window window) {
-        return dropTo(point(window));
+        return allInterface.getDragAndDrop().dropTo(window);
     }
 
     @Override
     public FxRobot dropTo(String query) {
-        return dropTo(pointOfVisibleNode(query));
+        return allInterface.getDragAndDrop().dropTo(query);
     }
 
     @Override
     public <T extends Node> FxRobot dropTo(Matcher<T> matcher) {
-        return dropTo(pointOfVisibleNode(matcher));
+        return allInterface.getDragAndDrop().dropTo(matcher);
     }
 
     @Override
     public <T extends Node> FxRobot dropTo(Predicate<T> predicate) {
-        return dropTo(pointOfVisibleNode(predicate));
+        return allInterface.getDragAndDrop().dropTo(predicate);
     }
 
     @Override
     public FxRobot moveTo(PointQuery pointQuery, Motion motion) {
-        context.getMoveRobot().moveTo(pointQuery, motion);
-        return this;
+        return allInterface.getDragAndDrop().moveTo(pointQuery, motion);
     }
 
     @Override
     public FxRobot moveBy(double x, double y, Motion motion) {
-        context.getMoveRobot().moveBy(x, y, motion);
-        return this;
+        return allInterface.getDragAndDrop().moveBy(x, y, motion);
     }
 
     @Override
     public FxRobot moveTo(double x, double y, Motion motion) {
-        return moveTo(point(new Point2D(x, y)), motion);
+        return allInterface.getDragAndDrop().moveTo(x, y, motion);
     }
 
     @Override
     public FxRobot moveTo(Point2D point, Motion motion) {
-        return moveTo(point(point), motion);
+        return allInterface.getDragAndDrop().moveTo(point, motion);
     }
 
     @Override
     public FxRobot moveTo(Bounds bounds, Motion motion) {
-        return moveTo(point(bounds), motion);
+        return allInterface.getDragAndDrop().moveTo(bounds, motion);
     }
 
     @Override
     public FxRobot moveTo(Node node, Pos offsetReferencePos, Point2D offset, Motion motion) {
-        return moveTo(point(node).atPosition(offsetReferencePos).atOffset(offset), motion);
+        return allInterface.getDragAndDrop().moveTo(node, offsetReferencePos, offset, motion);
     }
 
     @Override
     public FxRobot moveTo(Scene scene, Motion motion) {
-        return moveTo(point(scene), motion);
+        return allInterface.getDragAndDrop().moveTo(scene, motion);
     }
 
     @Override
     public FxRobot moveTo(Window window, Motion motion) {
-        return moveTo(point(window), motion);
+        return allInterface.getDragAndDrop().moveTo(window, motion);
     }
 
     @Override
     public FxRobot moveTo(String query, Motion motion) {
-        return moveTo(pointOfVisibleNode(query), motion);
+        return allInterface.getDragAndDrop().moveTo(query, motion);
     }
 
     @Override
     public <T extends Node> FxRobot moveTo(Matcher<T> matcher, Motion motion) {
-        return moveTo(pointOfVisibleNode(matcher), motion);
+        return allInterface.getDragAndDrop().moveTo(matcher, motion);
     }
 
     @Override
     public <T extends Node> FxRobot moveTo(Predicate<T> predicate, Motion motion) {
-        return moveTo(pointOfVisibleNode(predicate), motion);
+        return allInterface.getDragAndDrop().moveTo(predicate, motion);
     }
-
-    private PointQuery pointOfVisibleNode(String query) {
-        NodeQuery nodeQuery = lookup(query);
-        Node node = queryVisibleNode(nodeQuery, "the query \"" + query + "\"");
-        return point(node);
-    }
-
-    private <T extends Node> PointQuery pointOfVisibleNode(Matcher<T> matcher) {
-        NodeQuery nodeQuery = lookup(matcher);
-        Node node = queryVisibleNode(nodeQuery, "the matcher \"" + matcher.toString() + "\"");
-        return point(node);
-    }
-
-    private <T extends Node> PointQuery pointOfVisibleNode(Predicate<T> predicate) {
-        NodeQuery nodeQuery = lookup(predicate);
-        Node node = queryVisibleNode(nodeQuery, "the predicate");
-        return point(node);
-    }
-
-    private Node queryNode(NodeQuery nodeQuery, String queryDescription) {
-        Optional<Node> resultNode = nodeQuery.tryQuery();
-        if (!resultNode.isPresent()) {
-            throw new FxRobotException(queryDescription + " returned no nodes.");
-        }
-        return resultNode.get();
-    }
-
-    private Node queryVisibleNode(NodeQuery nodeQuery, String queryDescription) {
-        Set<Node> resultNodes = nodeQuery.queryAll();
-        if (resultNodes.isEmpty()) {
-            throw new FxRobotException(queryDescription + " returned no nodes.");
-        }
-        Optional<Node> resultNode = from(resultNodes).match(isVisible()).tryQuery();
-        if (!resultNode.isPresent()) {
-            throw new FxRobotException(queryDescription + " returned " + resultNodes.size() + " nodes" +
-                ", but no nodes were visible.");
-        }
-        return resultNode.get();
-    }
-
 }

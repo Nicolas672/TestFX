@@ -37,6 +37,7 @@ ext.platform = getOSName()
 
 repositories {
     mavenCentral()
+    jcenter()
 }
 
 afterEvaluate {
@@ -105,6 +106,10 @@ afterEvaluate {
         }
     }
 
+    compileJava {
+        exclude '*module-info*'
+    }
+
     javadoc {
         source = sourceSets.main.allJava
         //dependsOn compileModuleInfoJava
@@ -121,10 +126,13 @@ afterEvaluate {
                         'javafx.graphics/com.sun.javafx.application=org.testfx',
                         'javafx.graphics/com.sun.glass.ui=org.testfx'])
             }
+        } else {
+            exclude '*module-info*'
         }
     }
 
     compileTestJava {
+        exclude '*module-info*'
         if (JavaVersion.current().isJava9Compatible()) {
             sourceCompatibility = JavaVersion.VERSION_1_9
             targetCompatibility = JavaVersion.VERSION_1_9

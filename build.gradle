@@ -21,7 +21,7 @@ import org.gradle.api.tasks.testing.logging.TestLogEvent
 buildscript {
     repositories {
         mavenCentral()
-    }
+     }
 }
 
 plugins {
@@ -80,6 +80,7 @@ allprojects { project ->
         if (project.hasProperty("useMavenLocal")) {
             mavenLocal()
         }
+        jcenter()
     }
 }
 

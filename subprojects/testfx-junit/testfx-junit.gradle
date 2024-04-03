@@ -37,6 +37,7 @@ ext.platform = getOSName()
 
 repositories {
     mavenCentral()
+    jcenter()
 }
 
 // This insanity should be removed when JUnit 4 uses hamcrest 2.1.
@@ -145,7 +146,13 @@ afterEvaluate {
                         'javafx.graphics/com.sun.javafx.application=org.testfx',
                         'javafx.graphics/com.sun.glass.ui=org.testfx'])
             }
+        } else {
+            exclude '*module-info*'
         }
+    }
+
+    compileTestJava {
+        exclude '*module-info*'
     }
 
     test {

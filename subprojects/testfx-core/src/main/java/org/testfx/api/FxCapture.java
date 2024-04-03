@@ -1,17 +1,34 @@
+/*
+ * Copyright 2013-2014 SmartBear Software
+ * Copyright 2014-2024 The TestFX Contributors
+ *
+ * Licensed under the EUPL, Version 1.1 or - as soon they will be approved by the
+ * European Commission - subsequent versions of the EUPL (the "Licence"); You may
+ * not use this work except in compliance with the Licence.
+ *
+ * You may obtain a copy of the Licence at:
+ * http://ec.europa.eu/idabc/eupl.html
+ *
+ * Unless required by applicable law or agreed to in writing, software distributed
+ * under the Licence is distributed on an "AS IS" basis, WITHOUT WARRANTIES OR
+ * CONDITIONS OF ANY KIND, either express or implied. See the Licence for the
+ * specific language governing permissions and limitations under the Licence.
+ */
 package org.testfx.api;
-
-import javafx.geometry.Bounds;
-import javafx.geometry.Rectangle2D;
-import javafx.scene.Node;
-import javafx.scene.image.Image;
-import org.testfx.api.Iterface.FxCaptureInterface;
-import org.testfx.service.support.Capture;
-import org.testfx.service.support.CaptureSupport;
 
 import java.net.URISyntaxException;
 import java.net.URL;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import javafx.geometry.Bounds;
+import javafx.geometry.Rectangle2D;
+import javafx.scene.Node;
+import javafx.scene.image.Image;
+
+import org.testfx.api.iterface.FxCaptureInterface;
+import org.testfx.service.support.Capture;
+import org.testfx.service.support.CaptureSupport;
+
 
 public class FxCapture implements FxCaptureInterface {
 

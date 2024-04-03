@@ -16,14 +16,10 @@
  */
 package org.testfx.api;
 
-import java.net.URISyntaxException;
 import java.net.URL;
 import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.Collection;
 import java.util.List;
-import java.util.Optional;
-import java.util.Set;
 import java.util.concurrent.Callable;
 import java.util.concurrent.TimeUnit;
 import java.util.function.Predicate;
@@ -43,21 +39,25 @@ import javafx.scene.input.MouseButton;
 import javafx.stage.Window;
 
 import org.hamcrest.Matcher;
-import org.testfx.api.Iterface.*;
+import org.testfx.api.iterface.FxBoundsInterface;
+import org.testfx.api.iterface.FxCaptureInterface;
+import org.testfx.api.iterface.FxClickInterface;
+import org.testfx.api.iterface.FxDragAndDropInterface;
+import org.testfx.api.iterface.FxInteractionInterface;
+import org.testfx.api.iterface.FxNodeQueryInterface;
+import org.testfx.api.iterface.FxPointQueryInterface;
+import org.testfx.api.iterface.FxScrollInterface;
+import org.testfx.api.iterface.FxWindowInterface;
+import org.testfx.api.iterface.FxWriteInterface;
 import org.testfx.robot.Motion;
-import org.testfx.service.locator.PointLocator;
 import org.testfx.service.query.BoundsQuery;
 import org.testfx.service.query.NodeQuery;
 import org.testfx.service.query.PointQuery;
 import org.testfx.service.support.Capture;
-import org.testfx.util.BoundsQueryUtils;
 
-import static org.testfx.util.NodeQueryUtils.isVisible;
-import static org.testfx.util.WaitForAsyncUtils.asyncFx;
-import static org.testfx.util.WaitForAsyncUtils.waitFor;
-import static org.testfx.util.WaitForAsyncUtils.waitForFxEvents;
-
-public class FxRobot implements FxWindowInterface, FxNodeQueryInterface, FxBoundsInterface, FxPointQueryInterface, FxCaptureInterface, FxInteractionInterface, FxClickInterface, FxDragAndDropInterface, FxScrollInterface, FxWriteInterface {
+public class FxRobot implements FxWindowInterface, FxNodeQueryInterface, FxBoundsInterface,
+        FxPointQueryInterface, FxCaptureInterface, FxInteractionInterface, FxClickInterface,
+        FxDragAndDropInterface, FxScrollInterface, FxWriteInterface {
 
     private final FxRobotContext context;
     private final FxRobotAllInterface allInterface;

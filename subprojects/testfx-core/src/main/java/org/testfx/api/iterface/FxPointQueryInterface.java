@@ -1,18 +1,35 @@
-package org.testfx.api.Iterface;
+/*
+ * Copyright 2013-2014 SmartBear Software
+ * Copyright 2014-2024 The TestFX Contributors
+ *
+ * Licensed under the EUPL, Version 1.1 or - as soon they will be approved by the
+ * European Commission - subsequent versions of the EUPL (the "Licence"); You may
+ * not use this work except in compliance with the Licence.
+ *
+ * You may obtain a copy of the Licence at:
+ * http://ec.europa.eu/idabc/eupl.html
+ *
+ * Unless required by applicable law or agreed to in writing, software distributed
+ * under the Licence is distributed on an "AS IS" basis, WITHOUT WARRANTIES OR
+ * CONDITIONS OF ANY KIND, either express or implied. See the Licence for the
+ * specific language governing permissions and limitations under the Licence.
+ */
+package org.testfx.api.iterface;
 
+import java.util.function.Predicate;
 import javafx.geometry.Bounds;
 import javafx.geometry.Point2D;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.stage.Window;
+
 import org.hamcrest.Matcher;
 import org.testfx.api.FxRobotContext;
 import org.testfx.api.FxRobotException;
 import org.testfx.service.query.NodeQuery;
 import org.testfx.service.query.PointQuery;
 
-import java.util.function.Predicate;
 
 public interface FxPointQueryInterface {
 
@@ -60,14 +77,14 @@ public interface FxPointQueryInterface {
     PointQuery point(Window window);
 
     /**
-     * Convenience method: Tries to find a given node via {@link NodeQuery#lookup(String)} before calling {@link #point(Node)},
-     * throwing a {@link FxRobotException} if no node is found.
+     * Convenience method: Tries to find a given node via {@link NodeQuery#lookup(String)}
+     * before calling {@link #point(Node)}, throwing a {@link FxRobotException} if no node is found.
      */
     PointQuery point(String query);
 
     /**
-     * Convenience method: Tries to find a given node via {@link NodeQuery#lookup(Matcher)} before calling {@link #point(Node)},
-     * throwing a {@link FxRobotException} if no node is found.
+     * Convenience method: Tries to find a given node via {@link NodeQuery#lookup(Matcher)}
+     * before calling {@link #point(Node)}, throwing a {@link FxRobotException} if no node is found.
      */
     <T extends Node> PointQuery point(Matcher<T> matcher);
 

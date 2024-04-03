@@ -11,7 +11,9 @@ import javafx.scene.input.MouseButton;
 import javafx.stage.Window;
 
 import org.hamcrest.Matcher;
+import org.testfx.api.FxPointQuery;
 import org.testfx.robot.Motion;
+import org.testfx.service.finder.WindowFinder;
 import org.testfx.service.query.PointQuery;
 
 import java.util.function.Predicate;
@@ -45,116 +47,116 @@ public interface FxDragAndDropInterface {
     FxDragAndDropInterface dropBy(double x, double y);
 
     /**
-     * Convenience method: Moves mouse to the point returned from {@link #point(double, double)}, presses the given
-     * buttons, and returns itself for method chaining.
+     * Convenience method: Moves mouse to the point returned from {@link FxPointQuery#point(double, double)}, presses the given
+     * buttons, and returns itself for method chaining. 
      */
     FxDragAndDropInterface drag(double x, double y, MouseButton... buttons);
     /**
-     * Convenience method: Moves mouse to the point returned from {@link #point(Point2D)}, presses the given
+     * Convenience method: Moves mouse to the point returned from {@link FxPointQuery#point(Point2D)}, presses the given
      * buttons, and returns itself for method chaining.
      */
     FxDragAndDropInterface drag(Point2D point, MouseButton... buttons);
 
     /**
-     * Convenience method: Moves mouse to the point returned from {@link #point(Bounds)}, presses the given
+     * Convenience method: Moves mouse to the point returned from {@link FxPointQuery#point(Bounds)}, presses the given
      * buttons, and returns itself for method chaining.
      */
     FxDragAndDropInterface drag(Bounds bounds, MouseButton... buttons);
 
     /**
-     * Convenience method: Moves mouse to the point returned from {@link #point(Node)}, presses the given
+     * Convenience method: Moves mouse to the point returned from {@link FxPointQuery#point(Node)}, presses the given
      * buttons, and returns itself for method chaining.
      */
     FxDragAndDropInterface drag(Node node, MouseButton... buttons);
 
     /**
-     * Convenience method: Moves mouse to the point returned from {@link #point(Scene)}, presses the given
+     * Convenience method: Moves mouse to the point returned from {@link FxPointQuery#point(Scene)}, presses the given
      * buttons, and returns itself for method chaining.
      */
     FxDragAndDropInterface drag(Scene scene, MouseButton... buttons);
 
     /**
-     * Convenience method: Moves mouse to the point returned from {@link #point(Window)}, presses the given
+     * Convenience method: Moves mouse to the point returned from {@link FxPointQuery#point(Window)}, presses the given
      * buttons, and returns itself for method chaining.
      */
     FxDragAndDropInterface drag(Window window, MouseButton... buttons);
 
     /**
-     * Convenience method: Moves mouse to the point returned from {@link #point(String)}, presses the given
+     * Convenience method: Moves mouse to the point returned from {@link FxPointQuery#point(String)}, presses the given
      * buttons, and returns itself for method chaining.
      */
     FxDragAndDropInterface drag(String query, MouseButton... buttons);
 
     /**
-     * Convenience method: Moves mouse to the point returned from {@link #point(Matcher)}, presses the given
+     * Convenience method: Moves mouse to the point returned from {@link FxPointQuery#point(Matcher)}, presses the given
      * buttons, and returns itself for method chaining.
      */
     <T extends Node> FxDragAndDropInterface drag(Matcher<T> matcher, MouseButton... buttons);
 
     /**
-     * Convenience method: Moves mouse to the point returned from {@link #point(Predicate)}, presses the given
+     * Convenience method: Moves mouse to the point returned from {@link FxPointQuery#point(Predicate)}, presses the given
      * buttons, and returns itself for method chaining.
      */
     <T extends Node> FxDragAndDropInterface drag(Predicate<T> predicate, MouseButton... buttons);
 
     /**
-     * Convenience method: Moves mouse to the point returned from {@link #point(double, double)}, releases the buttons
+     * Convenience method: Moves mouse to the point returned from {@link FxPointQuery#point(double, double)}, releases the buttons
      * that were pressed in {@link #drag(MouseButton...)}- or {@link #press(MouseButton...)}-related methods,
      * and returns itself for method chaining.
      */
     FxDragAndDropInterface dropTo(double x, double y);
 
     /**
-     * Convenience method: Moves mouse to the point returned from {@link #point(Point2D)}, releases the buttons
+     * Convenience method: Moves mouse to the point returned from {@link FxPointQuery#point(Point2D)}, releases the buttons
      * that were pressed in {@link #drag(MouseButton...)}- or {@link #press(MouseButton...)}-related methods,
      * and returns itself for method chaining.
      */
     FxDragAndDropInterface dropTo(Point2D point);
 
     /**
-     * Convenience method: Moves mouse to the point returned from {@link #point(Bounds)}, releases the buttons
+     * Convenience method: Moves mouse to the point returned from {@link FxPointQuery#point(Bounds)}, releases the buttons
      * that were pressed in {@link #drag(MouseButton...)}- or {@link #press(MouseButton...)}-related methods,
      * and returns itself for method chaining.
      */
     FxDragAndDropInterface dropTo(Bounds bounds);
 
     /**
-     * Convenience method: Moves mouse to the point returned from {@link #point(Node)}, releases the buttons
+     * Convenience method: Moves mouse to the point returned from {@link FxPointQuery#point(Node)}, releases the buttons
      * that were pressed in {@link #drag(MouseButton...)}- or {@link #press(MouseButton...)}-related methods,
      * and returns itself for method chaining.
      */
     FxDragAndDropInterface dropTo(Node node);
 
     /**
-     * Convenience method: Moves mouse to the point returned from {@link #point(Scene)}, releases the buttons
+     * Convenience method: Moves mouse to the point returned from {@link FxPointQuery#point(Scene)}, releases the buttons
      * that were pressed in {@link #drag(MouseButton...)}- or {@link #press(MouseButton...)}-related methods,
      * and returns itself for method chaining.
      */
     FxDragAndDropInterface dropTo(Scene scene);
 
     /**
-     * Convenience method: Moves mouse to the point returned from {@link #point(Window)}, releases the buttons
+     * Convenience method: Moves mouse to the point returned from {@link FxPointQuery#point(Window)}, releases the buttons
      * that were pressed in {@link #drag(MouseButton...)}- or {@link #press(MouseButton...)}-related methods,
      * and returns itself for method chaining.
      */
     FxDragAndDropInterface dropTo(Window window);
 
     /**
-     * Convenience method: Moves mouse to the point returned from {@link #point(String)}, releases the buttons
+     * Convenience method: Moves mouse to the point returned from {@link FxPointQuery#point(String)}, releases the buttons
      * that were pressed in {@link #drag(MouseButton...)}- or {@link #press(MouseButton...)}-related methods,
      * and returns itself for method chaining.
      */
     FxDragAndDropInterface dropTo(String query);
 
     /**
-     * Convenience method: Moves mouse to the point returned from {@link #point(Matcher)}, releases the buttons
+     * Convenience method: Moves mouse to the point returned from {@link FxPointQuery#point(Matcher)}, releases the buttons
      * that were pressed in {@link #drag(MouseButton...)}- or {@link #press(MouseButton...)}-related methods,
      * and returns itself for method chaining.
      */
     <T extends Node> FxDragAndDropInterface dropTo(Matcher<T> matcher);
 
     /**
-     * Convenience method: Moves mouse to the point returned from {@link #point(Predicate)}, releases the buttons
+     * Convenience method: Moves mouse to the point returned from {@link FxPointQuery#point(Predicate)}, releases the buttons
      * that were pressed in {@link #drag(MouseButton...)}- or {@link #press(MouseButton...)}-related methods,
      * and returns itself for method chaining.
      */
@@ -210,7 +212,7 @@ public interface FxDragAndDropInterface {
     FxDragAndDropInterface moveBy(double x, double y, Motion motion);
 
     /**
-     * Convenience method: Moves mouse directly to the point returned from {@link #point(double, double)} and returns
+     * Convenience method: Moves mouse directly to the point returned from {@link FxPointQuery#point(double, double)} and returns
      * itself for method chaining.
      */
     default FxDragAndDropInterface moveTo(double x, double y) {
@@ -219,12 +221,12 @@ public interface FxDragAndDropInterface {
 
     /**
      * Convenience method: Moves mouse using the given {@code motion} (see: {@link Motion} to the point returned from
-     * {@link #point(double, double)} and returns itself for method chaining.
+     * {@link FxPointQuery#point(double, double)} and returns itself for method chaining.
      */
     FxDragAndDropInterface moveTo(double x, double y, Motion motion);
 
     /**
-     * Convenience method: Moves mouse directly to the point returned from {@link #point(Point2D)} and returns itself
+     * Convenience method: Moves mouse directly to the point returned from {@link FxPointQuery#point(Point2D)} and returns itself
      * for method chaining.
      */
     default FxDragAndDropInterface moveTo(Point2D point) {
@@ -233,7 +235,7 @@ public interface FxDragAndDropInterface {
 
     /**
      * Convenience method: Moves mouse using the given {@code motion} (see: {@link Motion} to the point returned from
-     * {@link #point(Point2D)} and returns itself for method chaining.
+     * {@link FxPointQuery#point(Point2D)} and returns itself for method chaining.
      */
     FxDragAndDropInterface moveTo(Point2D point, Motion motion);
 
@@ -247,7 +249,7 @@ public interface FxDragAndDropInterface {
 
     /**
      * Convenience method: Moves mouse using the given {@code motion} (see: {@link Motion} to the point returned from
-     * {@link #point(Bounds)} and returns itself for method chaining.
+     * {@link FxPointQuery#point(Bounds)} and returns itself for method chaining.
      */
     FxDragAndDropInterface moveTo(Bounds bounds, Motion motion);
 
@@ -268,7 +270,7 @@ public interface FxDragAndDropInterface {
     }
 
     /**
-     * Convenience method: Moves mouse directly to the point returned from {@link #point(Node)},
+     * Convenience method: Moves mouse directly to the point returned from {@link FxPointQuery#point(Node)},
      * with the given offset from the center of the given {@code Node}, and returns itself for method chaining.
      */
     default FxDragAndDropInterface moveTo(Node node, Point2D offset) {
@@ -277,7 +279,7 @@ public interface FxDragAndDropInterface {
 
     /**
      * Convenience method: Moves mouse using the given {@code motion} (see: {@link Motion} to the point returned from
-     * {@link #point(Node)}, with the given offset (from the {@code offsetReferencePos}, and returns itself for
+     * {@link FxPointQuery#point(Node)}, with the given offset (from the {@code offsetReferencePos}, and returns itself for
      * method chaining.
      */
     FxDragAndDropInterface moveTo(Node node, Pos offsetReferencePos, Point2D offset, Motion motion);
@@ -292,7 +294,7 @@ public interface FxDragAndDropInterface {
 
     /**
      * Convenience method: Moves mouse using the given {@code motion} (see: {@link Motion} to the point returned from
-     * {@link #point(Scene)} and returns itself for method chaining.
+     * {@link FxPointQuery#point(Scene)} and returns itself for method chaining.
      */
     FxDragAndDropInterface moveTo(Scene scene, Motion motion);
 
@@ -306,12 +308,12 @@ public interface FxDragAndDropInterface {
 
     /**
      * Convenience method: Moves mouse using the given {@code motion} (see: {@link Motion} to the point returned from
-     * {@link #point(Window)} and returns itself for method chaining.
+     * {@link FxPointQuery#point(Window)} and returns itself for method chaining.
      */
     FxDragAndDropInterface moveTo(Window window, Motion motion);
 
     /**
-     * Convenience method: Moves mouse directly to the point returned from {@link #point(String)} and returns itself
+     * Convenience method: Moves mouse directly to the point returned from {@link FxPointQuery#point(String)} and returns itself
      * for method chaining.
      */
     default FxDragAndDropInterface moveTo(String query) {
@@ -320,12 +322,12 @@ public interface FxDragAndDropInterface {
 
     /**
      * Convenience method: Moves mouse using the given {@code motion} (see: {@link Motion} to the point returned from
-     * {@link #point(String)} and returns itself for method chaining.
+     * {@link FxPointQuery#point(String)} and returns itself for method chaining.
      */
     FxDragAndDropInterface moveTo(String query, Motion motion);
 
     /**
-     * Convenience method: Moves mouse directly to the point returned from {@link #point(Matcher)} and returns itself
+     * Convenience method: Moves mouse directly to the point returned from {@link FxPointQuery#point(Matcher)} and returns itself
      * for method chaining.
      */
     default <T extends Node> FxDragAndDropInterface moveTo(Matcher<T> matcher) {
@@ -334,12 +336,12 @@ public interface FxDragAndDropInterface {
 
     /**
      * Convenience method: Moves mouse using the given {@code motion} (see: {@link Motion} to the point returned from
-     * {@link #point(Matcher)} and returns itself for method chaining.
+     * {@link FxPointQuery#point(Matcher)} and returns itself for method chaining.
      */
     <T extends Node> FxDragAndDropInterface moveTo(Matcher<T> matcher, Motion motion);
 
     /**
-     * Convenience method: Moves mouse directly to the point returned from {@link #point(Predicate)} and returns itself
+     * Convenience method: Moves mouse directly to the point returned from {@link FxPointQuery#point(Predicate)} and returns itself
      * for method chaining.
      */
     default <T extends Node> FxDragAndDropInterface moveTo(Predicate<T> predicate) {
@@ -348,7 +350,7 @@ public interface FxDragAndDropInterface {
 
     /**
      * Convenience method: Moves mouse using the given {@code motion} (see: {@link Motion} to the point returned from
-     * {@link #point(Predicate)} and returns itself for method chaining.
+     * {@link FxPointQuery#point(Predicate)} and returns itself for method chaining.
      */
     <T extends Node> FxDragAndDropInterface moveTo(Predicate<T> predicate, Motion motion);
 }

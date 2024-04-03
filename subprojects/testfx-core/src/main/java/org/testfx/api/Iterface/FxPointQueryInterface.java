@@ -9,6 +9,7 @@ import javafx.stage.Window;
 import org.hamcrest.Matcher;
 import org.testfx.api.FxRobotContext;
 import org.testfx.api.FxRobotException;
+import org.testfx.service.query.NodeQuery;
 import org.testfx.service.query.PointQuery;
 
 import java.util.function.Predicate;
@@ -59,19 +60,19 @@ public interface FxPointQueryInterface {
     PointQuery point(Window window);
 
     /**
-     * Convenience method: Tries to find a given node via {@link #lookup(String)} before calling {@link #point(Node)},
+     * Convenience method: Tries to find a given node via {@link NodeQuery#lookup(String)} before calling {@link #point(Node)},
      * throwing a {@link FxRobotException} if no node is found.
      */
     PointQuery point(String query);
 
     /**
-     * Convenience method: Tries to find a given node via {@link #lookup(Matcher)} before calling {@link #point(Node)},
+     * Convenience method: Tries to find a given node via {@link NodeQuery#lookup(Matcher)} before calling {@link #point(Node)},
      * throwing a {@link FxRobotException} if no node is found.
      */
     <T extends Node> PointQuery point(Matcher<T> matcher);
 
     /**
-     * Convenience method: Tries to find a given node via {@link #lookup(Predicate)} before calling
+     * Convenience method: Tries to find a given node via {@link NodeQuery#lookup(Predicate)} before calling
      * {@link #point(Node)}, throwing a {@link FxRobotException} if no node is found.
      */
     <T extends Node> PointQuery point(Predicate<T> predicate);

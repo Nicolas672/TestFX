@@ -7,6 +7,7 @@ import javafx.scene.Scene;
 import javafx.scene.input.MouseButton;
 import javafx.stage.Window;
 import org.hamcrest.Matcher;
+import org.testfx.api.FxPointQuery;
 import org.testfx.robot.Motion;
 import org.testfx.service.query.PointQuery;
 
@@ -82,7 +83,7 @@ public interface FxClickInterface {
     FxClickInterface clickOn(Point2D point, Motion motion, MouseButton... buttons);
 
     /**
-     * Convenience method: Moves mouse directly to the point returned from {@link #point(Bounds)}, clicks the given
+     * Convenience method: Moves mouse directly to the point returned from {@link FxPointQuery#point(Bounds)}, clicks the given
      * buttons, and returns itself for method chaining.
      */
     default FxClickInterface clickOn(Bounds bounds, MouseButton... buttons) {
@@ -91,12 +92,12 @@ public interface FxClickInterface {
 
     /**
      * Convenience method: Moves mouse using the given {@code motion} (see: {@link Motion} to the point returned
-     * from {@link #point(Bounds)}, clicks the given buttons, and returns itself for method chaining.
+     * from {@link FxPointQuery#point(Bounds)}, clicks the given buttons, and returns itself for method chaining.
      */
     FxClickInterface clickOn(Bounds bounds, Motion motion, MouseButton... buttons);
 
     /**
-     * Convenience method: Moves mouse directly to the point returned from {@link #point(Node)}, clicks the given
+     * Convenience method: Moves mouse directly to the point returned from {@link FxPointQuery#point(Node)}, clicks the given
      * buttons, and returns itself for method chaining.
      */
     default FxClickInterface clickOn(Node node, MouseButton... buttons) {
@@ -105,12 +106,12 @@ public interface FxClickInterface {
 
     /**
      * Convenience method: Moves mouse using the given {@code motion} (see: {@link Motion} to the point returned from
-     * {@link #point(Node)}, clicks the given buttons, and returns itself for method chaining.
+     * {@link FxPointQuery#point(Node)}, clicks the given buttons, and returns itself for method chaining.
      */
     FxClickInterface clickOn(Node node, Motion motion, MouseButton... buttons);
 
     /**
-     * Convenience method: Moves mouse directly to the point returned from {@link #point(Scene)}, clicks the given
+     * Convenience method: Moves mouse directly to the point returned from {@link FxPointQuery#point(Scene)}, clicks the given
      * buttons, and returns itself for method chaining.
      */
     default FxClickInterface clickOn(Scene scene, MouseButton... buttons) {
@@ -119,12 +120,12 @@ public interface FxClickInterface {
 
     /**
      * Convenience method: Moves mouse using the given {@code motion} (see: {@link Motion} to the point returned from
-     * {@link #point(Scene)}, clicks the given buttons, and returns itself for method chaining.
+     * {@link FxPointQuery#point(Scene)}, clicks the given buttons, and returns itself for method chaining.
      */
     FxClickInterface clickOn(Scene scene, Motion motion, MouseButton... buttons);
 
     /**
-     * Convenience method: Moves mouse directly to the point returned from {@link #point(Window)}, clicks the given
+     * Convenience method: Moves mouse directly to the point returned from {@link FxPointQuery#point(Window)}, clicks the given
      * buttons, and returns itself for method chaining.
      */
     default FxClickInterface clickOn(Window window, MouseButton... buttons) {
@@ -133,12 +134,12 @@ public interface FxClickInterface {
 
     /**
      * Convenience method: Moves mouse using the given {@code motion} (see: {@link Motion} to the point returned from
-     * {@link #point(Window)}, clicks the given buttons, and returns itself for method chaining.
+     * {@link FxPointQuery#point(Window)}, clicks the given buttons, and returns itself for method chaining.
      */
     FxClickInterface clickOn(Window window, Motion motion, MouseButton... buttons);
 
     /**
-     * Convenience method: Moves mouse directly to the point returned from {@link #point(String)}, clicks the given
+     * Convenience method: Moves mouse directly to the point returned from {@link FxPointQuery#point(String)}, clicks the given
      * buttons, and returns itself for method chaining.
      */
     default FxClickInterface clickOn(String query, MouseButton... buttons) {
@@ -147,12 +148,12 @@ public interface FxClickInterface {
 
     /**
      * Convenience method: Moves mouse using the given {@code motion} (see: {@link Motion} to the point returned from
-     * {@link #point(String)}, clicks the given buttons, and returns itself for method chaining.
+     * {@link FxPointQuery#point(String)}, clicks the given buttons, and returns itself for method chaining.
      */
     FxClickInterface clickOn(String query, Motion motion, MouseButton... buttons);
 
     /**
-     * Convenience method: Moves mouse directly to the point returned from {@link #point(Matcher)}, clicks the given
+     * Convenience method: Moves mouse directly to the point returned from {@link FxPointQuery#point(Matcher)}, clicks the given
      * buttons, and returns itself for method chaining.
      */
     default <T extends Node> FxClickInterface clickOn(Matcher<T> matcher, MouseButton... buttons) {
@@ -161,12 +162,12 @@ public interface FxClickInterface {
 
     /**
      * Convenience method: Moves mouse using the given {@code motion} (see: {@link Motion} to the point returned from
-     * {@link #point(Matcher)}, clicks the given buttons, and returns itself for method chaining.
+     * {@link FxPointQuery#point(Matcher)}, clicks the given buttons, and returns itself for method chaining.
      */
     <T extends Node> FxClickInterface clickOn(Matcher<T> matcher, Motion motion, MouseButton... buttons);
 
     /**
-     * Convenience method: Moves mouse directly to the point returned from {@link #point(Predicate)}, clicks the given
+     * Convenience method: Moves mouse directly to the point returned from {@link FxPointQuery#point(Predicate)}, clicks the given
      * buttons, and returns itself for method chaining.
      */
     default <T extends Node> FxClickInterface clickOn(Predicate<T> predicate, MouseButton... buttons) {
@@ -175,7 +176,7 @@ public interface FxClickInterface {
 
     /**
      * Convenience method: Moves mouse using the given {@code motion} (see: {@link Motion} to the point returned from
-     * {@link #point(Predicate)}, clicks the given buttons, and returns itself for method chaining.
+     * {@link FxPointQuery#point(Predicate)}, clicks the given buttons, and returns itself for method chaining.
      */
     <T extends Node> FxClickInterface clickOn(Predicate<T> predicate, Motion motion, MouseButton... buttons);
 
@@ -214,7 +215,7 @@ public interface FxClickInterface {
     FxClickInterface rightClickOn(double x, double y, Motion motion);
 
     /**
-     * Convenience method: Moves mouse to the point returned from {@link #point(Point2D)}, clicks
+     * Convenience method: Moves mouse to the point returned from {@link FxPointQuery#point(Point2D)}, clicks
      * the {@link MouseButton#SECONDARY} button, and returns itself for method chaining.
      */
     default FxClickInterface rightClickOn(Point2D point) {
@@ -223,13 +224,13 @@ public interface FxClickInterface {
 
     /**
      * Convenience method: Moves mouse using the given {@code motion} (see: {@link Motion} to the point returned from
-     * {@link #point(Point2D)}, clicks the {@link MouseButton#SECONDARY} button, and returns itself for method
+     * {@link FxPointQuery#point(Point2D)}, clicks the {@link MouseButton#SECONDARY} button, and returns itself for method
      * chaining.
      */
     FxClickInterface rightClickOn(Point2D point, Motion motion);
 
     /**
-     * Convenience method: Moves mouse directly to the point returned from {@link #point(Bounds)}, clicks
+     * Convenience method: Moves mouse directly to the point returned from {@link FxPointQuery#point(Bounds)}, clicks
      * the {@link MouseButton#SECONDARY} button, and returns itself for method chaining.
      */
     default FxClickInterface rightClickOn(Bounds bounds) {
@@ -238,12 +239,12 @@ public interface FxClickInterface {
 
     /**
      * Convenience method: Moves mouse using the given {@code motion} (see: {@link Motion} to the point returned from
-     * {@link #point(Bounds)}, clicks the {@link MouseButton#SECONDARY} button, and returns itself for method chaining.
+     * {@link FxPointQuery#point(Bounds)}, clicks the {@link MouseButton#SECONDARY} button, and returns itself for method chaining.
      */
     FxClickInterface rightClickOn(Bounds bounds, Motion motion);
 
     /**
-     * Convenience method: Moves mouse directly to the point returned from {@link #point(Node)}, clicks
+     * Convenience method: Moves mouse directly to the point returned from {@link FxPointQuery#point(Node)}, clicks
      * the {@link MouseButton#SECONDARY} button, and returns itself for method chaining.
      */
     default FxClickInterface rightClickOn(Node node) {
@@ -252,12 +253,12 @@ public interface FxClickInterface {
 
     /**
      * Convenience method: Moves mouse using the given {@code motion} (see: {@link Motion} to the point returned from
-     * {@link #point(Node)}, clicks the {@link MouseButton#SECONDARY} button, and returns itself for method chaining.
+     * {@link FxPointQuery#point(Node)}, clicks the {@link MouseButton#SECONDARY} button, and returns itself for method chaining.
      */
     FxClickInterface rightClickOn(Node node, Motion motion);
 
     /**
-     * Convenience method: Moves mouse directly to the point returned from {@link #point(Scene)}, clicks
+     * Convenience method: Moves mouse directly to the point returned from {@link FxPointQuery#point(Scene)}, clicks
      * the {@link MouseButton#SECONDARY} button, and returns itself for method chaining.
      */
     default FxClickInterface rightClickOn(Scene scene) {
@@ -266,12 +267,12 @@ public interface FxClickInterface {
 
     /**
      * Convenience method: Moves mouse using the given {@code motion} (see: {@link Motion} to the point returned from
-     * {@link #point(Scene)}, clicks the {@link MouseButton#SECONDARY} button, and returns itself for method chaining.
+     * {@link FxPointQuery#point(Scene)}, clicks the {@link MouseButton#SECONDARY} button, and returns itself for method chaining.
      */
     FxClickInterface rightClickOn(Scene scene, Motion motion);
 
     /**
-     * Convenience method: Moves mouse directly to the point returned from {@link #point(Window)}, clicks
+     * Convenience method: Moves mouse directly to the point returned from {@link FxPointQuery#point(Window)}, clicks
      * the {@link MouseButton#SECONDARY} button, and returns itself for method chaining.
      */
     default FxClickInterface rightClickOn(Window window) {
@@ -280,12 +281,12 @@ public interface FxClickInterface {
 
     /**
      * Convenience method: Moves mouse using the given {@code motion} (see: {@link Motion} to the point returned from
-     * {@link #point(Window)}, clicks the {@link MouseButton#SECONDARY} button, and returns itself for method chaining.
+     * {@link FxPointQuery#point(Window)}, clicks the {@link MouseButton#SECONDARY} button, and returns itself for method chaining.
      */
     FxClickInterface rightClickOn(Window window, Motion motion);
 
     /**
-     * Convenience method: Moves mouse directly to the point returned from {@link #point(String)}, clicks
+     * Convenience method: Moves mouse directly to the point returned from {@link FxPointQuery#point(String)}, clicks
      * the {@link MouseButton#SECONDARY} button, and returns itself for method chaining.
      */
     default FxClickInterface rightClickOn(String query) {
@@ -294,12 +295,12 @@ public interface FxClickInterface {
 
     /**
      * Convenience method: Moves mouse using the given {@code motion} (see: {@link Motion} to the point returned from
-     * {@link #point(String)}, clicks the {@link MouseButton#SECONDARY} button, and returns itself for method chaining.
+     * {@link FxPointQuery#point(String)}, clicks the {@link MouseButton#SECONDARY} button, and returns itself for method chaining.
      */
     FxClickInterface rightClickOn(String query, Motion motion);
 
     /**
-     * Convenience method: Moves mouse directly to the point returned from {@link #point(Matcher)}, clicks
+     * Convenience method: Moves mouse directly to the point returned from {@link FxPointQuery#point(Matcher)}, clicks
      * the {@link MouseButton#SECONDARY} button, and returns itself for method chaining.
      */
     default <T extends Node> FxClickInterface rightClickOn(Matcher<T> matcher) {
@@ -308,13 +309,13 @@ public interface FxClickInterface {
 
     /**
      * Convenience method: Moves mouse using the given {@code motion} (see: {@link Motion} to the point returned from
-     * {@link #point(Matcher)}, clicks the {@link MouseButton#SECONDARY} button, and returns itself for method
+     * {@link FxPointQuery#point(Matcher)}, clicks the {@link MouseButton#SECONDARY} button, and returns itself for method
      * chaining.
      */
     <T extends Node> FxClickInterface rightClickOn(Matcher<T> matcher, Motion motion);
 
     /**
-     * Convenience method: Moves mouse directly to the point returned from {@link #point(Predicate)}, clicks
+     * Convenience method: Moves mouse directly to the point returned from {@link FxPointQuery#point(Predicate)}, clicks
      * the {@link MouseButton#SECONDARY} button, and returns itself for method chaining.
      */
     default <T extends Node> FxClickInterface rightClickOn(Predicate<T> predicate) {
@@ -323,13 +324,13 @@ public interface FxClickInterface {
 
     /**
      * Convenience method: Moves mouse using the given {@code motion} (see: {@link Motion} to the point returned from
-     * {@link #point(Predicate)}, clicks the {@link MouseButton#SECONDARY} button, and returns itself for method
+     * {@link FxPointQuery#point(Predicate)}, clicks the {@link MouseButton#SECONDARY} button, and returns itself for method
      * chaining.
      */
     <T extends Node> FxClickInterface rightClickOn(Predicate<T> predicate, Motion motion);
 
     /**
-     * Convenience method: Moves mouse directly to the point returned from {@link #point(double, double)}, double
+     * Convenience method: Moves mouse directly to the point returned from {@link FxPointQuery#point(double, double)}, double
      * clicks the given buttons, and returns itself for method chaining.
      */
     default FxClickInterface doubleClickOn(double x, double y, MouseButton... buttons) {
@@ -338,12 +339,12 @@ public interface FxClickInterface {
 
     /**
      * Convenience method: Moves mouse using the given {@code motion} (see: {@link Motion} to the point returned from
-     * {@link #point(double, double)}, double clicks the given buttons, and returns itself for method chaining.
+     * {@link FxPointQuery#point(double, double)}, double clicks the given buttons, and returns itself for method chaining.
      */
     FxClickInterface doubleClickOn(double x, double y, Motion motion, MouseButton... buttons);
 
     /**
-     * Convenience method: Moves mouse directly to the point returned from {@link #point(Point2D)}, double
+     * Convenience method: Moves mouse directly to the point returned from {@link FxPointQuery#point(Point2D)}, double
      * clicks the given buttons, and returns itself for method chaining.
      */
     default FxClickInterface doubleClickOn(Point2D point, MouseButton... buttons) {
@@ -352,12 +353,12 @@ public interface FxClickInterface {
 
     /**
      * Convenience method: Moves mouse using the given {@code motion} (see: {@link Motion} to the point returned from
-     * {@link #point(Point2D)}, double clicks the given buttons, and returns itself for method chaining.
+     * {@link FxPointQuery#point(Point2D)}, double clicks the given buttons, and returns itself for method chaining.
      */
     FxClickInterface doubleClickOn(Point2D point, Motion motion, MouseButton... buttons);
 
     /**
-     * Convenience method: Moves mouse directly to the point returned from {@link #point(Bounds)}, double
+     * Convenience method: Moves mouse directly to the point returned from {@link FxPointQuery#point(Bounds)}, double
      * clicks the given buttons, and returns itself for method chaining.
      */
     default FxClickInterface doubleClickOn(Bounds bounds, MouseButton... buttons) {
@@ -366,12 +367,12 @@ public interface FxClickInterface {
 
     /**
      * Convenience method: Moves mouse using the given {@code motion} (see: {@link Motion} to the point returned from
-     * {@link #point(Bounds)}, double clicks the given buttons, and returns itself for method chaining.
+     * {@link FxPointQuery#point(Bounds)}, double clicks the given buttons, and returns itself for method chaining.
      */
     FxClickInterface doubleClickOn(Bounds bounds, Motion motion, MouseButton... buttons);
 
     /**
-     * Convenience method: Moves mouse directly to the point returned from {@link #point(Node)}, double
+     * Convenience method: Moves mouse directly to the point returned from {@link FxPointQuery#point(Node)}, double
      * clicks the given buttons, and returns itself for method chaining.
      */
     default FxClickInterface doubleClickOn(Node node, MouseButton... buttons) {
@@ -380,12 +381,12 @@ public interface FxClickInterface {
 
     /**
      * Convenience method: Moves mouse using the given {@code motion} (see: {@link Motion} to the point returned from
-     * {@link #point(Node)}, double clicks the given buttons, and returns itself for method chaining.
+     * {@link FxPointQuery#point(Node)}, double clicks the given buttons, and returns itself for method chaining.
      */
     FxClickInterface doubleClickOn(Node node, Motion motion, MouseButton... buttons);
 
     /**
-     * Convenience method: Moves mouse directly to the point returned from {@link #point(Scene)}, double
+     * Convenience method: Moves mouse directly to the point returned from {@link FxPointQuery#point(Scene)}, double
      * clicks the given buttons, and returns itself for method chaining.
      */
     default FxClickInterface doubleClickOn(Scene scene, MouseButton... buttons) {
@@ -394,12 +395,12 @@ public interface FxClickInterface {
 
     /**
      * Convenience method: Moves mouse using the given {@code motion} (see: {@link Motion} to the point returned from
-     * {@link #point(Scene)}, double clicks the given buttons, and returns itself for method chaining.
+     * {@link FxPointQuery#point(Scene)}, double clicks the given buttons, and returns itself for method chaining.
      */
     FxClickInterface doubleClickOn(Scene scene, Motion motion, MouseButton... buttons);
 
     /**
-     * Convenience method: Moves mouse directly to the point returned from {@link #point(Window)}, double
+     * Convenience method: Moves mouse directly to the point returned from {@link FxPointQuery#point(Window)}, double
      * clicks the given buttons, and returns itself for method chaining.
      */
     default FxClickInterface doubleClickOn(Window window, MouseButton... buttons) {
@@ -408,12 +409,12 @@ public interface FxClickInterface {
 
     /**
      * Convenience method: Moves mouse using the given {@code motion} (see: {@link Motion} to the point returned from
-     * {@link #point(Window)}, double clicks the given buttons, and returns itself for method chaining.
+     * {@link FxPointQuery#point(Window)}, double clicks the given buttons, and returns itself for method chaining.
      */
     FxClickInterface doubleClickOn(Window window, Motion motion, MouseButton... buttons);
 
     /**
-     * Convenience method: Moves mouse directly to the point returned from {@link #point(String)}, double
+     * Convenience method: Moves mouse directly to the point returned from {@link FxPointQuery#point(String)}, double
      * clicks the given buttons, and returns itself for method chaining.
      */
     default FxClickInterface doubleClickOn(String query, MouseButton... buttons) {
@@ -422,12 +423,12 @@ public interface FxClickInterface {
 
     /**
      * Convenience method: Moves mouse using the given {@code motion} (see: {@link Motion} to the point returned from
-     * {@link #point(String)}, double clicks the given buttons, and returns itself for method chaining.
+     * {@link FxPointQuery#point(String)}, double clicks the given buttons, and returns itself for method chaining.
      */
     FxClickInterface doubleClickOn(String query, Motion motion, MouseButton... buttons);
 
     /**
-     * Convenience method: Moves mouse directly to the point returned from {@link #point(Matcher)}, double
+     * Convenience method: Moves mouse directly to the point returned from {@link FxPointQuery#point(Matcher)}, double
      * clicks the given buttons, and returns itself for method chaining.
      */
     default <T extends Node> FxClickInterface doubleClickOn(Matcher<T> matcher, MouseButton... buttons) {
@@ -436,12 +437,12 @@ public interface FxClickInterface {
 
     /**
      * Convenience method: Moves mouse using the given {@code motion} (see: {@link Motion} to the point returned from
-     * {@link #point(Matcher)}, double clicks the given buttons, and returns itself for method chaining.
+     * {@link FxPointQuery#point(Matcher)}, double clicks the given buttons, and returns itself for method chaining.
      */
     <T extends Node> FxClickInterface doubleClickOn(Matcher<T> matcher, Motion motion, MouseButton... buttons);
 
     /**
-     * Convenience method: Moves mouse directly to the point returned from {@link #point(Predicate)}, double
+     * Convenience method: Moves mouse directly to the point returned from {@link FxPointQuery#point(Predicate)}, double
      * clicks the given buttons, and returns itself for method chaining.
      */
     default <T extends Node> FxClickInterface doubleClickOn(Predicate<T> predicate, MouseButton... buttons) {
@@ -450,7 +451,7 @@ public interface FxClickInterface {
 
     /**
      * Convenience method: Moves mouse using the given {@code motion} (see: {@link Motion} to the point returned from
-     * {@link #point(Predicate)}, double clicks the given buttons, and returns itself for method chaining.
+     * {@link FxPointQuery#point(Predicate)}, double clicks the given buttons, and returns itself for method chaining.
      */
     <T extends Node> FxClickInterface doubleClickOn(Predicate<T> predicate, Motion motion, MouseButton... buttons);
 

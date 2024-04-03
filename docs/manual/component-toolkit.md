@@ -65,33 +65,33 @@ public class HelloCustomStageDemo {
 
 Static methods that **register stages as containers**.
 
-Examples | Description
--------- | -----------
-`registerPrimaryStage()` | Registers the primary `Stage` as the container for JavaFX fixtures. Launches the JavaFX toolkit, if not already launched.
-`registerStage(() -> new Stage())` | Registers the `Stage` supplied with `Supplier<Stage>` as the container for JavaFX fixtures.
+| Examples                           | Description                                                                                                               |
+|------------------------------------|---------------------------------------------------------------------------------------------------------------------------|
+| `registerPrimaryStage()`           | Registers the primary `Stage` as the container for JavaFX fixtures. Launches the JavaFX toolkit, if not already launched. |
+| `registerStage(() -> new Stage())` | Registers the `Stage` supplied with `Supplier<Stage>` as the container for JavaFX fixtures.                               |
 
 Static methods that **setup the contents of registered stages**.
 
-Examples | Description
--------- | -----------
-`setupStage(stage -> stage.setScene(scene)` | Provides the registered `Stage` to `Consumer<Stage>`.
-`setupScene(() -> new Scene(new Region()))` | Uses the registered `Stage` to put the `Scene` supplied with `Supplier<Scene>` into it.
-`setupSceneRoot(() -> new Region())` | Uses the registered `Stage` to put the `Parent` node supplied with `Supplier<Parent>` into it.
-`setupApplication(SimpleDemo.class)`<br>`setupApplication(SimpleDemo.class, "--debug")` | Passes the registered `Stage` to `Application#start()` after creating and initializing the `Class<Application>`.
-`cleanupApplication(application)` | Calls `Application#stop()` of the `Application`.
+| Examples                                                                                | Description                                                                                                      |
+|-----------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------------------|
+| `setupStage(stage -> stage.setScene(scene)`                                             | Provides the registered `Stage` to `Consumer<Stage>`.                                                            |
+| `setupScene(() -> new Scene(new Region()))`                                             | Uses the registered `Stage` to put the `Scene` supplied with `Supplier<Scene>` into it.                          |
+| `setupSceneRoot(() -> new Region())`                                                    | Uses the registered `Stage` to put the `Parent` node supplied with `Supplier<Parent>` into it.                   |
+| `setupApplication(SimpleDemo.class)`<br>`setupApplication(SimpleDemo.class, "--debug")` | Passes the registered `Stage` to `Application#start()` after creating and initializing the `Class<Application>`. |
+| `cleanupApplication(application)`                                                       | Calls `Application#stop()` of the `Application`.                                                                 |
 
 Static methods provided as **utility methods**.
 
-Examples | Description
--------- | -----------
-`setupFixture(() -> pane.getChildren().add(node))`<br>`setupFixture(() -> new Label("label"))` | Creates or modifies JavaFX fixtures within a `Runnable` or `Callable<T>` and waits until the call finished.
-`showStage()` | Shows the registered `Stage` and brings it to the front.
-`hideStage()` | Hides the registered `Stage`.
+| Examples                                                                                       | Description                                                                                                 |
+|------------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------|
+| `setupFixture(() -> pane.getChildren().add(node))`<br>`setupFixture(() -> new Label("label"))` | Creates or modifies JavaFX fixtures within a `Runnable` or `Callable<T>` and waits until the call finished. |
+| `showStage()`                                                                                  | Shows the registered `Stage` and brings it to the front.                                                    |
+| `hideStage()`                                                                                  | Hides the registered `Stage`.                                                                               |
 
 Static methods that provide the **internal context**.
 
-Examples | Description
--------- | -----------
-`toolkitContext().getRegisteredStage()` | Returns the registered `Stage`.
-`toolkitContext().setLaunchTimeoutInMillis(2500)` | Sets the timeout for the launch in milliseconds.
-`toolkitContext().setSetupTimeoutInMillis(2500)` | Sets the timeout for the setup in milliseconds.
+| Examples                                          | Description                                      |
+|---------------------------------------------------|--------------------------------------------------|
+| `toolkitContext().getRegisteredStage()`           | Returns the registered `Stage`.                  |
+| `toolkitContext().setLaunchTimeoutInMillis(2500)` | Sets the timeout for the launch in milliseconds. |
+| `toolkitContext().setSetupTimeoutInMillis(2500)`  | Sets the timeout for the setup in milliseconds.  |

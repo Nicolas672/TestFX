@@ -459,33 +459,33 @@ import org.testfx.framework.spock.ApplicationSpec;
 class ClickableButtonSpec extends ApplicationSpec {
     @Override
     void init() throws Exception {
-        FxToolkit.registerStage { new Stage() }
+        FxToolkit.registerStage { new Stage(); }
     }
 
     @Override
     void start(Stage stage) {
-        Button button = new Button('click me!')
-        button.setOnAction { button.setText('clicked!') }
-        stage.setScene(new Scene(new StackPane(button), 100, 100))
-        stage.show()
+        Button button = new Button('click me!');
+        button.setOnAction { button.setText('clicked!'); }
+        stage.setScene(new Scene(new StackPane(button), 100, 100));
+        stage.show();
     }
 
     @Override
     void stop() throws Exception {
-        FxToolkit.hideStage()
+        FxToolkit.hideStage();
     }
 
-    def "should contain button"() {
+    def should_contain_button() {
         expect:
-        verifyThat('.button', hasText('click me!'))
+        verifyThat('.button', hasText('click me!'));
     }
 
-    def "should click on button"() {
+    def should_click_on_button() {
         when:
-        clickOn(".button")
+        clickOn(".button");
 
         then:
-        verifyThat('.button', hasText('clicked!'))
+        verifyThat('.button', hasText('clicked!'));
     }
 }
 ```

@@ -16,12 +16,14 @@
  */
 apply plugin: 'java-library'
 
-ext.pomDescription = 'TestFX Core'
+ext.pomName = 'TestFX Core'
+ext.pomDescription = 'TestFX core library'
 ext.moduleName = 'org.testfx'
-ext.openjfxVersion = '12'
+ext.openjfxVersion = '11'
 
 repositories {
     jcenter()
+    mavenCentral()
 }
 
 static def getOSName() {
@@ -73,29 +75,31 @@ afterEvaluate {
         }
 
         implementation group: 'org.hamcrest', name: 'hamcrest', version: '2.1'
+        testImplementation group: 'org.hamcrest', name: 'hamcrest-core', version: '2.1'
+        testImplementation group: 'org.hamcrest', name: 'hamcrest-library', version: '2.1'
+
         implementation "org.assertj:assertj-core:3.13.2"
         testImplementation "org.assertj:assertj-core:3.13.2"
+
         implementation 'org.osgi:org.osgi.core:6.0.0'
 
-        testImplementation ("junit:junit:4.13-beta-3") {
+        testImplementation ("junit:junit:4.13.2") {
             exclude group: 'org.hamcrest', module: 'hamcrest-core'
         }
         // Empty shim JAR for JUnit4.
-        testImplementation group: 'org.hamcrest', name: 'hamcrest-core', version: '2.1'
-
         testImplementation "org.mockito:mockito-core:3.0.0"
 
         if (JavaVersion.current().isJava12Compatible()) {
-            testCompile 'org.testfx:openjfx-monocle:jdk-12.0.1+2'
+            testImplementation 'org.testfx:openjfx-monocle:jdk-12.0.1+2'
         } else if (JavaVersion.current().isJava11Compatible()) {
-            testCompile "org.testfx:openjfx-monocle:jdk-11+26"
+            testImplementation "org.testfx:openjfx-monocle:jdk-11+26"
         } else if (JavaVersion.current().isJava10Compatible() &&
                 System.getProperty("java.vm.name").toLowerCase().contains("openjdk")) {
-            testCompile "org.testfx:openjfx-monocle:jdk-11+26"
+            testImplementation "org.testfx:openjfx-monocle:jdk-11+26"
         } else if (JavaVersion.current().isJava9Compatible()) {
-            testCompile "org.testfx:openjfx-monocle:jdk-9+181"
+            testImplementation "org.testfx:openjfx-monocle:jdk-9+181"
         } else {
-            testCompile "org.testfx:openjfx-monocle:8u76-b04"
+            testImplementation "org.testfx:openjfx-monocle:8u76-b04"
         }
     }
 
@@ -107,7 +111,7 @@ afterEvaluate {
     }
 
     if (JavaVersion.current().isJava9Compatible()) {
-        task compileModuleInfoJava(type: JavaCompile) {
+        tasks.register('compileModuleInfoJava', JavaCompile) {
             dependsOn 'compileJava'
             doFirst {
                 options.compilerArgs = [
@@ -188,7 +192,6 @@ afterEvaluate {
                         '--add-exports', 'javafx.graphics/com.sun.glass.ui.delegate=org.testfx.monocle',
                         '--patch-module', "$moduleName=" + files(sourceSets.test.java.outputDir, sourceSets.test.resources.srcDirs).asPath,
                 ]
-                classpath = files()
             }
         }
     }
@@ -196,6 +199,11 @@ afterEvaluate {
     jar {
         inputs.property("moduleName", moduleName)
 
+        manifest {
+            attributes(
+                    'Automatic-Module-Name': moduleName
+            )
+        }
         // FIXME: This makes a type of fat/uber JAR that contains all of our dependencies!
         /*
         bnd (

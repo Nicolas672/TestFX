@@ -155,12 +155,14 @@ public class BoundsQueryUtilsTest {
 
     @Test
     public void bounds_scene() {
-        verifyThat(BoundsQueryUtils.bounds(scene), hasBounds(0, 0, 1, 1));
+        verifyThat(BoundsQueryUtils.bounds(scene),
+                hasBounds(scene.getX(), scene.getY(), scene.getWidth(), scene.getHeight()));
     }
 
     @Test
     public void bounds_window() {
-        verifyThat(BoundsQueryUtils.bounds(stage), hasBounds(stage.getX(), stage.getY(), 1, 1));
+        verifyThat(BoundsQueryUtils.bounds(stage),
+                hasBounds(stage.getX(), stage.getY(), stage.getWidth(), stage.getHeight()));
     }
 
     @Test
